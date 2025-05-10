@@ -12,7 +12,7 @@ class PasswordManager:
 
     def add_password(self, entry: PasswordEntry):
         """
-        Add a new password entry objest to the manager.
+        Adds a new password entry objest to the manager.
         """
         self.passwords.append(entry)
         self.save_to_file()
