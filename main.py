@@ -2,11 +2,12 @@ from password_entry import PasswordEntry
 
 def main():
     entry = PasswordEntry("github.com", "zlea-joycrate", "Firstclass5.0")
-    print(entry.to_dict())
+    print(entry.to_dict()) #prints the dictionary version
 
+     # Save the entry to a file
     data = entry.to_dict()
-    loaded_entry = PasswordEntry.from_dict(data)
-    print(loaded_entry.website, loaded_entry.username, loaded_entry.password)
+    loaded_entry = PasswordEntry.from_dict(data) 
+    print(loaded_entry.website, loaded_entry.username, loaded_entry.password) #prints the loaded entry
 
 if __name__ == "__main__":
     main()

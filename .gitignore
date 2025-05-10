@@ -2,3 +2,4 @@ secret.key
 __pycache__/
 *.pyc
 .env
+#ignore sensitive files and encryption key
