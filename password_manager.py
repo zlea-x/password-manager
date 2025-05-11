@@ -67,5 +67,5 @@ class PasswordManager:
                 self.passwords = [PasswordEntry.from_dict(entry) for entry in data]
             except Exception as e:
                 # Handle decryption or JSON errors
-                print("Error loading data: {e}")
+                print(f"Error loading data: {e}")
                 self.passwords = []                    # If there's an error, use an empty list
