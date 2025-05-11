@@ -14,5 +14,58 @@ class PasswordManager:
         """
         Adds a new password entry objest to the manager.
         """
-        self.passwords.append(entry)
+        self.passwords.append(entry)  # adds the entry to the list
+        self.save_to_file() # saves the updated list to the file
+
+    def get_password(self, website):
+        """
+        gets a password for an inputed website
+        """
+        for entry in self.passwords:
+            if entry.website == website:
+                return entry #returs the password if the website matches
+        return None
+    
+    def update_password(self, website, username, password):
+        for entry in self.passwords:
+            if entry.website == website:
+                entry.username = username
+                entry.password = password
+                self.save_to_file()
+                return True
+        return False
+    
+    def delete_password(self, website):
+        self.passwords = [entry for entry in self.passwords if entry.website != website]
         self.save_to_file()
+
+    def save_to_file(self):
+        """
+        Convert the list of password entries to JSON, encrypt it, and saves it to a file.
+        """
+        data = [entry.to_dict() for entry in self.passwords]  # Convert each object to a dictionary
+        json_data = json.dumps(data)                   # Convert the list of dictionaries to a JSON string
+        encrypted = EncryptionUtil.encrypt(json_data)  # Encrypt the JSON string using encryption utility
+
+        with open(self.filename, 'wb') as key_file:           # (wb) Open file in binary write mode
+            key_file.write(encrypted)                         # Writes the encrypted data to file
+
+    def load_from_file(self):
+        """
+        Load and decrypt data from file (if it exists).
+        Converts decrypted JSON back into PasswordEntry objects.
+        """
+        if not os.path.exists(self.filename):
+            return                                     # checks and exit if file doesn't exist
+
+        with open(self.filename, 'rb') as key_file:           # (rb) Open file in binary read mode
+            encrypted = key_file.read()                       # Read the encrypted data
+            try:
+                decrypted = EncryptionUtil.decrypt(encrypted)     # trying to decrypt the data using the utility class
+                data = json.loads(decrypted)                     # Load JSON string into Python list if the decryption is successful
+                # Convert each dictionary back into a PasswordEntry object
+                self.passwords = [PasswordEntry.from_dict(entry) for entry in data]
+            except Exception as e:
+                # Handle decryption or JSON errors
+                print("Error loading data: {e}")
+                self.passwords = []                    # If there's an error, use an empty list
