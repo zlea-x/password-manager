@@ -90,3 +90,10 @@ def password_manager():
 if __name__ == "__main__":
     password_manager()
     
+
+from ui import main
+
+# Run the GUI app
+if __name__ == "__main__":
+    main()
+# This will start the GUI application

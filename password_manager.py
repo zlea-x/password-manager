@@ -69,3 +69,52 @@ class PasswordManager:
                 # Handle decryption or JSON errors
                 print(f"Error loading data: {e}")
                 self.passwords = []                    # If there's an error, use an empty list
+
+def main():
+        manager = PasswordManager()
+        MASTER_PASSWORD = "OOP-project"
+        entered = input("Enter Master Password: ")
+        if entered != MASTER_PASSWORD:
+            print("Access Denied.")
+            return
+
+        while True:
+            print("\nPassword Manager CLI")
+            print("1. Add password")
+            print("2. Retrieve password")
+            print("3. Update password")
+            print("4. Delete password")
+            print("5. Exit")
+
+            choice = input("Enter choice: ")
+
+            if choice == "1":
+                site = input("Website: ")
+                user = input("Username/Email: ")
+                pw = input("Password: ")
+                manager.add_password(PasswordEntry(site, user, pw))
+                print("Entry added.")
+            elif choice == "2":
+                site = input("Website: ")
+                entry = manager.get_password(site)
+                if entry:
+                    print(f"Username: {entry.username}\nPassword: {entry.password}")
+                else:
+                    print("Not found.")
+            elif choice == "3":
+                site = input("Website to update: ")
+                user = input("New Username: ")
+                pw = input("New Password: ")
+                updated = manager.update_password(site, user, pw)
+                print("Updated." if updated else "Not found.")
+            elif choice == "4":
+                site = input("Website to delete: ")
+                manager.delete_password(site)
+                print("Entry deleted.")
+            elif choice == "5":
+                break
+            else:
+                print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
