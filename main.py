@@ -86,6 +86,7 @@ def password_manager():
         print("ERROR: Entry still exists!")
     else:
         print("Entry deleted successfully.")
+
 if __name__ == "__main__":
     password_manager()
     
