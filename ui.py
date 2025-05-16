@@ -154,3 +154,7 @@ if __name__ == "__main__":
     root = Tk()
     app = PasswordManagerApp(root)
     root.mainloop()
+
+# Adding a view all button and method defeats the aim of the encryption and security of the password manager.
+# The view all button would allow the user to see all passwords in plain text, which is not secure.
+# The purpose of the password manager is to securely store and encrypt passwords, not to display them all at once.

@@ -134,3 +134,9 @@ This project is for educational purposes. For any use beyond coursework, please 
 ## Acknowledgments
 
 Developed as a semester project for OOP (Python).
+
+---
+
+## Authors
+-[Anuri Joy Philemon](https://github.com/joycrates)
+-[Azalea Akpokugbe](https://github.com/zlea-x)

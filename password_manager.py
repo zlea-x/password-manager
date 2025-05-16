@@ -118,3 +118,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# This is a simple command-line interface for the PasswordManager class.
+# It allows users to add, retrieve, update, and delete password entries.
+# The main function initializes the PasswordManager and provides a menu for user interaction.
+
+# A view all option could be added but it won't be because that defeats the purpose of the password manager.
